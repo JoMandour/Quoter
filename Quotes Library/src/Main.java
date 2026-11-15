@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 void main() {
     String book = IO.readln("Book Name : ");
     String quote = IO.readln("Quote     : ");
@@ -6,7 +8,14 @@ void main() {
 
     Quote newQuote = new Quote(book, quote, author, category);
 
-    IO.println("\nCreated: " + newQuote);
+    try {
+        new QuoteDOA().saveQuote(newQuote);
+        IO.println("\nSaved: " + newQuote);
+    } catch (SQLException e) {
+        IO.println("\nCould not save quote: " + e.getMessage());
+        e.printStackTrace();
+    }
+
 }
     
 
