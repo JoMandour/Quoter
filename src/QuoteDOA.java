@@ -1,9 +1,11 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
+import java.util.List;
 public class QuoteDOA {
 
     private static final String JDBC_URL = "jdbc:sqlite:Quotes.db";
@@ -45,5 +47,39 @@ public class QuoteDOA {
             IO.println("Error inserting data.");
             e.printStackTrace();
         }
+    }
+
+    public static List<Quote> searchQuotes(String keyword) {
+        List<Quote> results = new ArrayList<>();
+        String sql = "SELECT * FROM Bookshelf WHERE Book LIKE ? OR Quote LIKE ? OR Author LIKE ? OR Category LIKE ?;";
+
+        try (Connection conn = DriverManager.getConnection(JDBC_URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ) {
+
+            pstmt.setString(1, "%" + keyword + "%");
+            pstmt.setString(2, "%" + keyword + "%");
+            pstmt.setString(3, "%" + keyword + "%");
+            pstmt.setString(4, "%" + keyword + "%");
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String book = rs.getString("Book");
+                String quote = rs.getString("Quote");
+                String author = rs.getString("Author");
+                String category = rs.getString("Category");
+                new Quote(id, book, quote, author, category);
+                results.add(new Quote(id, book, quote, author, category));
+
+            }
+            
+            
+        } catch (SQLException e) {
+            IO.println("Err Searching in DB");
+            e.printStackTrace();
+        }
+        return results;
     }
 }
