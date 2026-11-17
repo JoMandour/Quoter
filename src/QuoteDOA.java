@@ -70,7 +70,6 @@ public class QuoteDOA {
                 String quote = rs.getString("Quote");
                 String author = rs.getString("Author");
                 String category = rs.getString("Category");
-                new Quote(id, book, quote, author, category);
                 results.add(new Quote(id, book, quote, author, category));
 
             }
@@ -81,5 +80,46 @@ public class QuoteDOA {
             e.printStackTrace();
         }
         return results;
+    }
+
+    public static boolean deleteQuote (int id) {
+        String sql = "DELETE FROM Bookshelf WHERE id = ?;";
+
+        try(Connection conn = DriverManager.getConnection(JDBC_URL);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+           ) {
+            pstmt.setInt(1, id);
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+
+           } catch (SQLException e) {
+            IO.println("Err deleting the quote.");
+            e.printStackTrace();
+           }
+           return false;
+
+    }
+
+    public static boolean updateQuote(Quote q) {
+        String sql = "UPDATE Bookshelf SET Book = ?, Quote = ?, Author = ?, Category = ? WHERE id = ?;";
+
+        try(Connection conn = DriverManager.getConnection(JDBC_URL);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+           ) {
+            pstmt.setString(1, q.book());
+            pstmt.setString(2, q.quote());
+            pstmt.setString(3, q.author());
+            pstmt.setString(4, q.category());
+            pstmt.setInt(5, q.id());
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+           } catch (SQLException e) {
+            IO.println("Err updating quote");
+            e.printStackTrace();
+           }
+           return false;
+
+
     }
 }
