@@ -29,14 +29,18 @@ For the current PowerShell session, if `JAVA_HOME` is already set correctly, onl
 $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 ```
 
-Then run `mvn package` to prepare the application and its dependencies, and create the installer:
+Rebuild the JAR after changing the application sources. Then copy the newly built JAR and dependencies into the jpackage input folder before creating the installer:
 
 ```powershell
+mvn package
 New-Item -ItemType Directory -Force target\jpackage-input\libs | Out-Null
-Copy-Item target\quotes-library-1.0-SNAPSHOT.jar target\jpackage-input\
-Copy-Item target\libs\*.jar target\jpackage-input\libs\
-jpackage --type exe --name Quoter --app-version 1.0.0 --vendor "JoMandour" --input target\jpackage-input --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class Launcher --dest target\dist --win-dir-chooser --win-menu --win-shortcut
+Copy-Item -Force target\quotes-library-1.0-SNAPSHOT.jar target\jpackage-input\
+Copy-Item -Force target\libs\*.jar target\jpackage-input\libs\
+jpackage --type exe --name Quoter --app-version 1.0.2 --vendor "JoMandour" --icon src\main\resources\icon.ico --input target\jpackage-input --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class Launcher --dest target\dist --win-dir-chooser --win-menu --win-shortcut
 ```
+
+`Quoter-1.0.2.exe` is the installer. After installing, launch **Quoter** from the Start menu or desktop shortcut.
+The app window uses `src\main\resources\icon.png`; the installer and Windows app launcher use `src\main\resources\icon.ico`.
 
 ## Dependency Management
 
