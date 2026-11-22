@@ -1,0 +1,114 @@
+/* ===== Paper & Ink ===== */
+.broadsheet-root,
+.paper-sheet {
+    -fx-background-color: #F4F1EA;
+    -fx-font-family: "Georgia", "Merriweather", "Times New Roman", serif;
+    -fx-text-fill: #1A1A1A;
+}
+
+.masthead-container {
+    -fx-border-color: transparent transparent #C8C3B8 transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* ===== Typography ===== */
+.masthead-title {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A1A1A;
+}
+
+.sheet-heading {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A1A1A;
+}
+
+.field-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5C584F;
+}
+
+/* ===== Flat nav tabs ===== */
+.nav-tab {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #1A1A1A;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-cursor: hand;
+}
+
+.nav-tab:hover {
+    -fx-underline: true;
+    -fx-background-color: transparent;
+}
+
+.nav-tab:focused {
+    -fx-background-color: transparent;
+}
+
+/* ===== Hairline inputs ===== */
+.hairline-input {
+    -fx-background-color: #FAF8F3;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: #C8C3B8;
+    -fx-border-width: 1px;
+    -fx-text-fill: #1A1A1A;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+
+.hairline-input:focused {
+    -fx-border-color: #1A1A1A;
+    -fx-background-color: #FAF8F3;
+}
+
+/* ===== Buttons ===== */
+.primary-btn {
+    -fx-background-color: #1A1A1A;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-text-fill: #F4F1EA;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+
+.primary-btn:hover {
+    -fx-background-color: #3A3A3A;
+}
+
+.secondary-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-border-color: #1A1A1A;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-text-fill: #1A1A1A;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+
+.secondary-btn:hover {
+    -fx-background-color: #E8E4DA;
+}
+
+/* ===== Transparent ScrollPane ===== */
+.broadsheet-scroll,
+.broadsheet-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.broadsheet-scroll {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
