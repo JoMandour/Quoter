@@ -1,3 +1,6 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +12,18 @@ import java.util.List;
 
 public class QuoteDOA {
 
-    private static final String JDBC_URL = "jdbc:sqlite:Quotes.db";
+    private static final String JDBC_URL = initDatabaseUrl();
+
+    private static String initDatabaseUrl() {
+        try {
+            Path appDir = Paths.get(System.getProperty("user.home"), ".quoter");
+            Files.createDirectories(appDir);
+            return "jdbc:sqlite:" + appDir.resolve("Quotes.db").toAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "jdbc:sqlite:Quotes.db";
+        }
+    }
 
     public static void createTable() {
         String sql = """

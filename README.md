@@ -13,6 +13,31 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 > If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
+## Build a Windows installer
+
+`jpackage` is included with the JDK, not the Java runtime. This project requires JDK 27. In PowerShell, point `JAVA_HOME` to your JDK and add its `bin` folder to `PATH`:
+
+```powershell
+$env:JAVA_HOME = 'C:\Path\To\jdk-27'
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+jpackage --version
+```
+
+For the current PowerShell session, if `JAVA_HOME` is already set correctly, only run:
+
+```powershell
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+```
+
+Then run `mvn package` to prepare the application and its dependencies, and create the installer:
+
+```powershell
+New-Item -ItemType Directory -Force target\jpackage-input\libs | Out-Null
+Copy-Item target\quotes-library-1.0-SNAPSHOT.jar target\jpackage-input\
+Copy-Item target\libs\*.jar target\jpackage-input\libs\
+jpackage --type exe --name Quoter --app-version 1.0.0 --vendor "JoMandour" --input target\jpackage-input --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class Launcher --dest target\dist --win-dir-chooser --win-menu --win-shortcut
+```
+
 ## Dependency Management
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
