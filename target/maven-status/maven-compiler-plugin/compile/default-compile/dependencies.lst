@@ -1,4 +1,3 @@
-classpath:C:\Users\egypt\.m2\repository\org\xerial\sqlite-jdbc\3.54.1.0\sqlite-jdbc-3.54.1.0.jar	5309:1794740648918
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-controls\26.0.1\javafx-controls-26.0.1.jar	306:1795086994776
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-controls\26.0.1\javafx-controls-26.0.1-win.jar	2605683:1795087001057
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-graphics\26.0.1\javafx-graphics-26.0.1.jar	306:1795086995301
@@ -7,3 +6,4 @@ classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-base\26.0.1\javafx-ba
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-base\26.0.1\javafx-base-26.0.1-win.jar	749191:1795086997750
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-fxml\26.0.1\javafx-fxml-26.0.1.jar	302:1795089775946
 classpath:C:\Users\egypt\.m2\repository\org\openjfx\javafx-fxml\26.0.1\javafx-fxml-26.0.1-win.jar	126204:1795089776173
+classpath:C:\Users\egypt\.m2\repository\org\xerial\sqlite-jdbc\3.49.1.0\sqlite-jdbc-3.49.1.0.jar	14317659:1795363604133
