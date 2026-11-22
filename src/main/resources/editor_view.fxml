@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="650.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="14.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="650.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="14.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditorController">
    <padding>
       <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
    </padding>
@@ -32,8 +32,8 @@
       <ComboBox fx:id="categoryInput" editable="true" prefWidth="150.0" />
       <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="12.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="secondary-btn" text="Cancel" />
-            <Button mnemonicParsing="false" styleClass="primary-btn" text="Save to Bookshelf" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" styleClass="secondary-btn" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#handleSave" styleClass="primary-btn" text="Save to Bookshelf" />
          </children>
       </HBox>
    </children>

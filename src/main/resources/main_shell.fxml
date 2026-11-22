@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="broadsheet-root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="broadsheet-root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="masthead-container" BorderPane.alignment="CENTER">
          <children>
@@ -17,12 +17,12 @@
                <children>
                   <Label styleClass="masthead-title" text="Quoter" />
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" styleClass="primary-btn" text="New entry" />
+                  <Button mnemonicParsing="false" onAction="#handleNewEntry" styleClass="primary-btn" text="New entry" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="12.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="nav-tab" text="Library" />
+                  <Button mnemonicParsing="false" onAction="#handleLibrary" styleClass="nav-tab" text="Library" />
                   <Button mnemonicParsing="false" styleClass="nav-tab" text="Bookshelf" />
                   <Button mnemonicParsing="false" styleClass="nav-tab" text="Daily review" />
                </children>
