@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class LibraryController {
@@ -78,7 +86,32 @@ public class LibraryController {
         attributionLabel.getStyleClass().add("quote-card-meta");
         attributionLabel.setWrapText(true);
 
-        card.getChildren().addAll(quoteLabel, attributionLabel);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        Button deleteBtn = new Button("×");
+        deleteBtn.getStyleClass().add("delete-btn");
+        deleteBtn.setOnAction(e -> handleDelete(q));
+
+        HBox footer = new HBox(8, attributionLabel, spacer, deleteBtn);
+        footer.setAlignment(Pos.CENTER_LEFT);
+
+        card.getChildren().addAll(quoteLabel, footer);
         return card;
     }
+
+    private void handleDelete(Quote q) {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Delete this quote permanently?", ButtonType.YES, ButtonType.NO);
+        confirm.setHeaderText(null);
+        confirm.setTitle("Delete Quote");
+
+        confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES && QuoteDOA.deleteQuote(q.id())) {
+                allQuotes.removeIf(item -> item.id() == q.id());
+                applyFilters();
+            }
+        }
+     );
+    }
+    
 }

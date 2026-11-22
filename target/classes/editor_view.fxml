@@ -10,27 +10,30 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="650.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="14.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditorController">
+<VBox maxHeight="-Infinity" maxWidth="650.0" minWidth="450.0" prefWidth="600.0" spacing="12.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditorController">
    <padding>
-      <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+      <Insets bottom="28.0" left="32.0" right="32.0" top="24.0" />
    </padding>
    <children>
-      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER_LEFT">
          <children>
             <Label styleClass="sheet-heading" text="New Entry" />
-            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="backButton" mnemonicParsing="false" styleClass="nav-tab" text="Back" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleCancel" styleClass="nav-tab" text="← Back" />
          </children>
       </HBox>
       <Label styleClass="field-label" text="QUOTE" />
-      <TextArea fx:id="quoteInput" prefHeight="200.0" prefRowCount="4" prefWidth="200.0" styleClass="hairline-input" wrapText="true" />
-      <Label text="BOOK" />
+      <TextArea fx:id="quoteInput" prefHeight="120.0" prefRowCount="4" styleClass="hairline-input" wrapText="true" />
+      <Label styleClass="field-label" text="BOOK" />
       <TextField fx:id="bookInput" styleClass="hairline-input" />
-      <Label text="AUTHOR" />
+      <Label styleClass="field-label" text="AUTHOR" />
       <TextField fx:id="authorInput" styleClass="hairline-input" />
-      <Label text="CATEGORY" />
-      <ComboBox fx:id="categoryInput" editable="true" prefWidth="150.0" />
-      <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="12.0">
+      <Label styleClass="field-label" text="CATEGORY" />
+      <ComboBox fx:id="categoryInput" editable="true" maxWidth="1.7976931348623157E308" styleClass="hairline-input" />
+      <HBox alignment="CENTER_RIGHT" spacing="12.0">
+         <padding>
+            <Insets top="8.0" />
+         </padding>
          <children>
             <Button mnemonicParsing="false" onAction="#handleCancel" styleClass="secondary-btn" text="Cancel" />
             <Button mnemonicParsing="false" onAction="#handleSave" styleClass="primary-btn" text="Save to Bookshelf" />

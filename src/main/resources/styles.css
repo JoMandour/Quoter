@@ -130,3 +130,27 @@
     -fx-font-size: 12px;
     -fx-text-fill: #6E6A61;
 }
+.delete-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8C867A;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 16px;
+    -fx-padding: 0 4 0 4;
+    -fx-cursor: hand;
+}
+
+.delete-btn:hover {
+    -fx-text-fill: #9E2A2B;
+}
+.root,
+.root-paper,
+.masthead,
+.quotes-grid {
+    -fx-background-color: #F4F1EA;
+}
+
+.broadsheet-scroll,
+.broadsheet-scroll > .viewport {
+    -fx-background-color: #F4F1EA;
+    -fx-background: #F4F1EA;
+}
