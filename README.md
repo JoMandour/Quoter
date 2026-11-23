@@ -34,3 +34,6 @@ A distraction-free desktop quote library built with JavaFX and SQLite, styled wi
 git clone [https://github.com/JoMandour/quotes-library.git](https://github.com/JoMandour/quotes-library.git)
 cd quotes-library
 mvn clean javafx:run
+## License
+
+This project is licensed under the [MIT License](LICENSE).
