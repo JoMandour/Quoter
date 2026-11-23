@@ -1,0 +1,17 @@
+# Maven build output and jpackage installer
+target/
+
+# Local SQLite database
+Quotes.db
+*.db
+*.db-shm
+*.db-wal
+
+# VS Code and Copilot / Java upgrade tooling
+.vscode/
+.github/
+
+# Java crash logs and OS files
+hs_err_pid*
+Thumbs.db
+Desktop.ini
