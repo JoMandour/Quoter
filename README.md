@@ -1,47 +1,36 @@
-## Getting Started
+# Quoter
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A distraction-free desktop quote library built with JavaFX and SQLite, styled with a classic newsprint broadsheet aesthetic.
 
-## Folder Structure
+## Features
 
-The workspace contains two folders by default, where:
+- **Broadsheet Editorial UI:** Warm newsprint cream palette (`#F4F1EA`), Georgia serif typography, and minimalist hairline borders designed for comfortable reading.
+- **Instant Search & Filtering:** Filter saved quotes in real time by quote text, book title, author, or category.
+- **Zero-Config Local Storage:** Automatically initializes and persists your library in an embedded SQLite database (`~/.quoter/Quotes.db`)—no external database server required.
+- **Standalone Windows Installer:** Bundled with its own custom Java runtime via `jpackage` and WiX Toolset so end users can install and run it without installing Java.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Tech Stack
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- **Language:** Java 27
+- **UI Framework:** JavaFX 26 (FXML + Custom CSS)
+- **Database:** SQLite (`sqlite-jdbc`)
+- **Build & Packaging:** Maven, `jpackage`, WiX Toolset v3.14
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Installation (Windows)
 
-## Build a Windows installer
+1. Go to the [**Releases**](../../releases) page and download **`Quoter-1.0.0.exe`**.
+2. Run the installer. *(If Windows SmartScreen displays a warning for an unrecognized app, click **More info** → **Run anyway**.)*
+3. Launch **Quoter** from your Desktop or Start Menu shortcut.
 
-`jpackage` is included with the JDK, not the Java runtime. This project requires JDK 27. In PowerShell, point `JAVA_HOME` to your JDK and add its `bin` folder to `PATH`:
+## Building from Source
 
-```powershell
-$env:JAVA_HOME = 'C:\Path\To\jdk-27'
-$env:Path = "$env:JAVA_HOME\bin;$env:Path"
-jpackage --version
-```
+### Prerequisites
+- JDK 27 (with `jpackage` on your `PATH`)
+- Apache Maven 3.9+
+- WiX Toolset v3.14 *(only required if building the `.exe` installer)*
 
-For the current PowerShell session, if `JAVA_HOME` is already set correctly, only run:
-
-```powershell
-$env:Path = "$env:JAVA_HOME\bin;$env:Path"
-```
-
-Rebuild the JAR after changing the application sources. Then copy the newly built JAR and dependencies into the jpackage input folder before creating the installer:
-
-```powershell
-mvn package
-New-Item -ItemType Directory -Force target\jpackage-input\libs | Out-Null
-Copy-Item -Force target\quotes-library-1.0-SNAPSHOT.jar target\jpackage-input\
-Copy-Item -Force target\libs\*.jar target\jpackage-input\libs\
-jpackage --type exe --name Quoter --app-version 1.0.2 --vendor "JoMandour" --icon src\main\resources\icon.ico --input target\jpackage-input --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class Launcher --dest target\dist --win-dir-chooser --win-menu --win-shortcut
-```
-
-`Quoter-1.0.2.exe` is the installer. After installing, launch **Quoter** from the Start menu or desktop shortcut.
-The app window uses `src\main\resources\icon.png`; the installer and Windows app launcher use `src\main\resources\icon.ico`.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Run Locally
+```bash
+git clone [https://github.com/JoMandour/quotes-library.git](https://github.com/JoMandour/quotes-library.git)
+cd quotes-library
+mvn clean javafx:run
