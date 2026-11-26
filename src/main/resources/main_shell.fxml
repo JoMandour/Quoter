@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="650.0" prefWidth="950.0" styleClass="root-paper" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<BorderPane prefHeight="650.0" prefWidth="950.0" styleClass="root-paper" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quoter.ui.MainController">
    <top>
       <VBox spacing="12.0" styleClass="masthead" BorderPane.alignment="CENTER">
          <padding>

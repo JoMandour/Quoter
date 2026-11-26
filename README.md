@@ -1,21 +1,77 @@
-## Getting Started
+# Quoter
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A small desktop quote library built with **JavaFX** and **SQLite**. Browse, search,
+filter, add, and delete quotes in a paper-and-ink styled interface.
 
-## Folder Structure
+## Features
 
-The workspace contains two folders by default, where:
+- Card-based quote library with live text search and category filtering
+- Add new quotes with book, author, and category
+- Delete quotes with a confirmation prompt
+- Categories are suggested from values already in the database
+- Quotes are stored locally in SQLite
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Requirements
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- **JDK 27** (the project targets Java 27)
+- **Maven 3.9+**
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Check your setup:
+
+```powershell
+mvn -v
+```
+
+`mvn -v` should report Java 27.
+
+## Run the app
+
+```powershell
+mvn javafx:run
+```
+
+## Build and test
+
+```powershell
+mvn clean package   # compile, run tests, build the JAR
+mvn test            # run the unit tests only
+```
+
+The executable JAR is written to `target/quotes-library-1.0-SNAPSHOT.jar`.
+
+## Project structure
+
+```
+src/
+├── main/
+│   ├── java/com/quoter/
+│   │   ├── Launcher.java          # JVM entry point (non-JavaFX launcher)
+│   │   ├── QuoterApp.java         # JavaFX application / window setup
+│   │   ├── AppContext.java        # shared QuoteDao instance for FXML controllers
+│   │   ├── model/Quote.java       # immutable quote record
+│   │   ├── dao/QuoteDao.java      # SQLite CRUD operations
+│   │   ├── db/Database.java       # connection handling and DB path
+│   │   ├── db/DataAccessException.java
+│   │   └── ui/                    # FXML controllers and dialogs
+│   └── resources/                 # FXML views, styles.css, icons
+└── test/java/com/quoter/dao/      # JUnit 5 tests against a temporary database
+```
+
+## Database
+
+The app stores quotes in:
+
+```
+%USERPROFILE%\.quoter\Quotes.db
+```
+
+The data layer is created automatically on first launch. Older versions used a
+`Bookshelf` table; on startup any existing rows are migrated into the new
+`quotes` table and the legacy table is removed.
 
 ## Build a Windows installer
 
-`jpackage` is included with the JDK, not the Java runtime. This project requires JDK 27. In PowerShell, point `JAVA_HOME` to your JDK and add its `bin` folder to `PATH`:
+`jpackage` ships with the JDK, not the Java runtime, so a full JDK is required.
 
 ```powershell
 $env:JAVA_HOME = 'C:\Path\To\jdk-27'
@@ -23,25 +79,23 @@ $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 jpackage --version
 ```
 
-For the current PowerShell session, if `JAVA_HOME` is already set correctly, only run:
+Rebuild the JAR, copy it and its dependencies into the jpackage input folder,
+then create the installer:
 
 ```powershell
-$env:Path = "$env:JAVA_HOME\bin;$env:Path"
-```
-
-Rebuild the JAR after changing the application sources. Then copy the newly built JAR and dependencies into the jpackage input folder before creating the installer:
-
-```powershell
-mvn package
+mvn clean package
 New-Item -ItemType Directory -Force target\jpackage-input\libs | Out-Null
 Copy-Item -Force target\quotes-library-1.0-SNAPSHOT.jar target\jpackage-input\
 Copy-Item -Force target\libs\*.jar target\jpackage-input\libs\
-jpackage --type exe --name Quoter --app-version 1.0.2 --vendor "JoMandour" --icon src\main\resources\icon.ico --input target\jpackage-input --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class Launcher --dest target\dist --win-dir-chooser --win-menu --win-shortcut
+jpackage --type exe --name Quoter --app-version 1.0.2 --vendor "JoMandour" `
+  --icon src\main\resources\icon.ico --input target\jpackage-input `
+  --main-jar quotes-library-1.0-SNAPSHOT.jar --main-class com.quoter.Launcher `
+  --java-options "--enable-native-access=ALL-UNNAMED,javafx.graphics" `
+  --dest target\dist --win-dir-chooser --win-menu --win-shortcut
 ```
 
-`Quoter-1.0.2.exe` is the installer. After installing, launch **Quoter** from the Start menu or desktop shortcut.
-The app window uses `src\main\resources\icon.png`; the installer and Windows app launcher use `src\main\resources\icon.ico`.
+`Quoter-1.0.2.exe` is the installer. After installing, launch **Quoter** from the
+Start menu or desktop shortcut.
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+The app window uses `src\main\resources\icon.png`; the installer and Windows app
+launcher use `src\main\resources\icon.ico`.

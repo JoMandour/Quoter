@@ -1,14 +1,8 @@
 /* ===== Paper & Ink ===== */
-.broadsheet-root,
 .paper-sheet {
     -fx-background-color: #F4F1EA;
     -fx-font-family: "Georgia", "Merriweather", "Times New Roman", serif;
     -fx-text-fill: #1A1A1A;
-}
-
-.masthead-container {
-    -fx-border-color: transparent transparent #C8C3B8 transparent;
-    -fx-border-width: 0 0 1px 0;
 }
 
 /* ===== Typography ===== */
@@ -105,13 +99,16 @@
 /* ===== Transparent ScrollPane ===== */
 .broadsheet-scroll,
 .broadsheet-scroll > .viewport {
-    -fx-background-color: transparent;
+    -fx-background-color: #F4F1EA;
+    -fx-background: #F4F1EA;
 }
 
 .broadsheet-scroll {
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+
+/* ===== Quote cards ===== */
 .quote-card {
     -fx-border-color: transparent #C8C3B8 #C8C3B8 transparent;
     -fx-border-width: 0 1px 1px 0;
@@ -130,6 +127,7 @@
     -fx-font-size: 12px;
     -fx-text-fill: #6E6A61;
 }
+
 .delete-btn {
     -fx-background-color: transparent;
     -fx-text-fill: #8C867A;
@@ -142,15 +140,11 @@
 .delete-btn:hover {
     -fx-text-fill: #9E2A2B;
 }
+
+/* ===== Page surfaces ===== */
 .root,
 .root-paper,
 .masthead,
 .quotes-grid {
     -fx-background-color: #F4F1EA;
-}
-
-.broadsheet-scroll,
-.broadsheet-scroll > .viewport {
-    -fx-background-color: #F4F1EA;
-    -fx-background: #F4F1EA;
 }
