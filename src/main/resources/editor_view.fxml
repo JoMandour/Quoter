@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="650.0" minWidth="450.0" prefWidth="600.0" spacing="12.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditorController">
+<VBox maxHeight="-Infinity" maxWidth="650.0" minWidth="450.0" prefWidth="600.0" spacing="12.0" styleClass="paper-sheet" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quoter.ui.EditorController">
    <padding>
       <Insets bottom="28.0" left="32.0" right="32.0" top="24.0" />
    </padding>
@@ -19,7 +19,7 @@
          <children>
             <Label styleClass="sheet-heading" text="New Entry" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleCancel" styleClass="nav-tab" text="← Back" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" styleClass="nav-tab" text="← Back" />
          </children>
       </HBox>
       <Label styleClass="field-label" text="QUOTE" />
